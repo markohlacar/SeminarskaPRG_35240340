@@ -1,4 +1,4 @@
-﻿# Projekt: Sledenje komponent in napak na vozilih v proizvodnem podjetju.
+# Projekt: Sledenje komponent in napak na vozilih v proizvodnem podjetju.
 
 Projekt v jeziku C#, ki simulira upravljanje komponent vozila, beleženje napak in njihovo analizo. Aplikacija uporablja objektno usmerjeno zasnovo, sodobne programske vzorce (Factory, Singleton, Strategy) ter podpira asinhrono programiranje in učinkovito obdelavo podatkov z uporabo struktur `List` in `Dictionary`.
 

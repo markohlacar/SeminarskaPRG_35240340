@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SeminarskaPRG_35240340
 {
 
-    //Abstraktna baza za vse vrste napak vozila.
+    //Abstraktna baza za vse vrste napak vozil ... 
 
     public abstract class NapakaVozila: IShranljivost
     {
@@ -15,10 +15,10 @@ namespace SeminarskaPRG_35240340
         public string KodaNapake { get; set; }            // Koda napake (npr. P001)
         public string OpisNapake { get; set; }            // Kratek opis napake
         public int StopnjaResnosti { get; set; }          // Stopnja resnosti (1–5)
-        public DateTime DatumOdkritja { get; set; }       // Datum zaznave napake
+        public DateTime DatumOdkritja { get; set; }       // Datum zaznave napake - date.time.now
         public bool Shranjeno { get; set; }
 
-        // Konstruktor
+        // Konstruktor osnovni
         public NapakaVozila(string kodaNapake, string opisNapake, int stopnjaResnosti, DateTime datumOdkritja)
         {
             KodaNapake = kodaNapake;
@@ -30,7 +30,7 @@ namespace SeminarskaPRG_35240340
         // Abstraktna metoda za validacijo napake (podrazredi jo morajo implementirati)
         public abstract bool ValidirajNapako();
 
-        // Abstraktna metoda za izpis podrobnosti o napaki
+        // Abstraktna metoda za izpis podrobnosti o napaki (podrazredi jo morajo implementirati)
         public abstract string IzpisiPodrobnosti();
 
         // Osnovni izpis napake

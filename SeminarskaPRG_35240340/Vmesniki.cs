@@ -10,11 +10,10 @@ namespace SeminarskaPRG_35240340
 
     // Vmesnik za sledenje komponentam vozila.
 
-    // Vmesnik za sledenje komponentam vozila.
     public interface IShranljivost
     {
         bool Shranjeno { get; set; }
-        // Vrne serijsko številko ali ID komponente.
+        // Vrne serijsko številko komponente.
         string PridobiShranljiviString();
 
     }

@@ -11,8 +11,8 @@ namespace SeminarskaPRG_35240340
 
     public static class KomponentaFactory
     {
-        // Centralizirana metoda za ustvarjanje komponent
-        public static KomponentaVozila UstvariKomponento(
+        // Faktory metoda za ustvarjanje komponent
+        public static KomponentaVozila? UstvariKomponento(
             EKomponente tip, string naziv, string proizvajalec, decimal cena, string serijskaStevilka)
         {
             DateTime datumProizvodnje = DateTime.Now;
@@ -102,7 +102,8 @@ namespace SeminarskaPRG_35240340
 
         public static KomponentaVozila? SprocesirajStringArray(string[] vrednosti)
         {
-            // Base komponente ; prebere pa ustvari/vrne komponento
+            // Base komponente ; prebere pa ustvari/vrne komponento....
+
             EKomponente tip = (EKomponente)int.Parse(vrednosti[0]);
             string naziv = vrednosti[1];
             string proizvajalec = vrednosti[2];

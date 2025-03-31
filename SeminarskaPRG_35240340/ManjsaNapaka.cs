@@ -12,10 +12,10 @@ namespace SeminarskaPRG_35240340
 
     public class ManjsaNapaka : NapakaVozila
     {
-        // Ali je priporočeno servisiranje vozila
+        // Ali je priporočeno servisiranje vozila ? Ne rabimo ustaviti vozilo v tem primeru
         public bool PotrebnoServisiranje { get; set; }
 
-        // Konstruktor
+        // Konstruktor osnovni
         public ManjsaNapaka(string kodaNapake, string opisNapake, int stopnjaResnosti, DateTime datumOdkritja, bool potrebnoServisiranje)
             : base(kodaNapake, opisNapake, stopnjaResnosti, datumOdkritja)
         {
@@ -23,6 +23,7 @@ namespace SeminarskaPRG_35240340
         }
 
         // Validacija: manjša napaka mora imeti stopnjo resnosti ≤ 3
+
         public override bool ValidirajNapako()
         {
             return StopnjaResnosti <= 3;

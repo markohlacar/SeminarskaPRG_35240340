@@ -12,12 +12,12 @@ namespace SeminarskaPRG_35240340.Komponente
 
     public class Kolesa : KomponentaVozila
     {
-        // Lastnosti specifične za kolesa
-        public int Premer { get; set; }  // Velikost kolesa v palcih
-        public string TipPnevmatike { get; set; }  // Tip pnevmatike (npr. letna, zimska)
-        public string MaterialPlatisca { get; set; }  // Material platišča (npr. aluminij, jeklo)
+        // geterji + seterji 
+        public int Premer { get; set; }  // cole
+        public string TipPnevmatike { get; set; }  // tip gume (npr. letna, zimska)
+        public string MaterialPlatisca { get; set; }  // material feltne (aluminij, jeklo...)
 
-        // Glavni konstruktor (brez konzolnih vnosov!)
+        // Glavni konstruktor 
         public Kolesa(string naziv, string proizvajalec, decimal cena, DateTime datumProizvodnje,
                       string serijskaStevilka, int premer, string tipPnevmatike, string materialPlatisca)
             : base(naziv, proizvajalec, cena, datumProizvodnje, serijskaStevilka)

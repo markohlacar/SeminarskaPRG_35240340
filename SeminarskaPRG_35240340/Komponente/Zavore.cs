@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 namespace SeminarskaPRG_35240340.Komponente
 {
 
-    /// Razred, ki predstavlja zavore na vozilu.
-    /// Deduje iz razreda KomponentaVozila.
+    // Razred, ki predstavlja zavore na vozilu.
+    // Deduje iz razreda KomponentaVozila.
 
     public class Zavore : KomponentaVozila
     {
@@ -15,7 +15,7 @@ namespace SeminarskaPRG_35240340.Komponente
         public string Material { get; set; }
         public bool Obrabljene { get; set; }
 
-        // Konstruktor z vsemi podatki (npr. za uporabo brez vnosa iz konzole)
+        // Konstruktor osnovni
         public Zavore(string naziv, string proizvajalec, decimal cena, DateTime datumProizvodnje,
                       string serijskaStevilka, string tipZavor, string material, bool obrabljene)
             : base(naziv, proizvajalec, cena, datumProizvodnje, serijskaStevilka)
@@ -25,7 +25,7 @@ namespace SeminarskaPRG_35240340.Komponente
             Obrabljene = obrabljene;
         }
 
-        // Konstruktor za ročni vnos preko konzole
+        // Konstruktor za ročni vnos preko konzole ....
         public Zavore() : base()
         {
             Console.Write("Vnesite tip zavor (Disk/Boben): ");
@@ -49,7 +49,7 @@ namespace SeminarskaPRG_35240340.Komponente
             }
         }
 
-        // Validacija
+        // Validacija komponent
         public override bool ValidirajKomponento()
         {
             if (Cena <= 0) return false;

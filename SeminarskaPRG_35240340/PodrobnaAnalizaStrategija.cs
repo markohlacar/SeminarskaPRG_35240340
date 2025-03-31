@@ -14,11 +14,11 @@ namespace SeminarskaPRG_35240340
     {
         public void Analiziraj(List<NapakaVozila> napake)
         {
-            Console.WriteLine("\n🔍 Podrobna analiza: Vse napake vozila:");
+            Console.WriteLine("\n Podrobna analiza: Vse napake vozila:");
 
             if (napake == null || napake.Count == 0)
             {
-                Console.WriteLine("Ni zaznanih napak v sistemu.");
+                Console.WriteLine(" Ni zaznanih napak v sistemu.");
                 return;
             }
 

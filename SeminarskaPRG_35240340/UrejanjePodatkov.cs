@@ -11,7 +11,7 @@ namespace SeminarskaPRG_35240340
     public class UrejanjePodatkov
     {
         private static readonly UrejanjePodatkov _instanca = new UrejanjePodatkov(); // Singleton
-        private static readonly object _lock = new object(); // Sinhronizacija niti
+        private static readonly object _lock = new object(); // Sinhronizacija thredov ... 
 
         private readonly string datotekaKomponent = "komponente.txt";
         private readonly string datotekaNapak = "napake.txt";
@@ -36,7 +36,7 @@ namespace SeminarskaPRG_35240340
         {
             if (komponente == null || komponente.Count == 0)
             {
-                Console.WriteLine("Ni komponent za shranjevanje.");
+                Console.WriteLine(" Ni komponent za shranjevanje.");
                 return;
             }
 
@@ -54,7 +54,7 @@ namespace SeminarskaPRG_35240340
                 }
             });
 
-            Console.WriteLine("Komponente uspešno shranjene v datoteko.");
+            Console.WriteLine(" Komponente uspešno shranjene v datoteko.");
         }
 
         // Shrani vse napake v datoteko (asinhrono, paralelno)
@@ -62,7 +62,7 @@ namespace SeminarskaPRG_35240340
         {
             if (napake == null || napake.Count == 0)
             {
-                Console.WriteLine("Ni napak za shranjevanje.");
+                Console.WriteLine(" Ni napak za shranjevanje.");
                 return;
             }
 
@@ -80,7 +80,7 @@ namespace SeminarskaPRG_35240340
                 }
             });
 
-            Console.WriteLine("✅ Napake uspešno shranjene v datoteko.");
+            Console.WriteLine(" Napake uspešno shranjene v datoteko.");
         }
 
         // Prebere vse komponente iz datoteke (trenutno samo izpiše vsebino)
@@ -93,16 +93,17 @@ namespace SeminarskaPRG_35240340
                 {
                     if (!File.Exists(datotekaKomponent))
                     {
-                        Console.WriteLine("⚠️ Datoteka za komponente ne obstaja.");
+                        Console.WriteLine(" Datoteka za komponente ne obstaja.");
                         return new List<KomponentaVozila>();
                     }
 
                     var vrstice = File.ReadAllLines(datotekaKomponent).ToList();
 
-                    Console.WriteLine("\n📄 Vsebina datoteke 'komponente.txt':\n");
+                    Console.WriteLine("\n Vsebina datoteke 'komponente.txt':\n");
                     Parallel.ForEach(vrstice, vrstica =>
                     {
-                        /*UstvariKomponento(EKomponente tip, string naziv, string proizvajalec, decimal cena, string serijskaStevilka) */
+                        // UstvariKomponento(EKomponente tip, string naziv, string proizvajalec, decimal cena, string serijskaStevilka) 
+
                         string[] vrednosti = vrstica.Split(",");
 
                         KomponentaVozila? kv = KomponentaFactory.SprocesirajStringArray(vrednosti);
@@ -114,7 +115,7 @@ namespace SeminarskaPRG_35240340
 
                     });
 
-                    // Tukaj lahko dodaš logiko za pretvorbo nazaj v objekte
+                    // pač vrnemo ... 
                     return komponente;
                 }
             });
@@ -130,7 +131,7 @@ namespace SeminarskaPRG_35240340
                 {
                     if (!File.Exists(datotekaNapak))
                     {
-                        Console.WriteLine("⚠️ Datoteka za napake ne obstaja.");
+                        Console.WriteLine(" Datoteka za napake ne obstaja.");
                         return new List<NapakaVozila>();
                     }
 
@@ -160,7 +161,7 @@ namespace SeminarskaPRG_35240340
                         }
                     });
 
-                    // Tukaj lahko dodaš logiko za pretvorbo nazaj v objekte
+                    //spet pač vrnemo .... 
                     return napakice;
                 }
             });
@@ -171,7 +172,7 @@ namespace SeminarskaPRG_35240340
         {
             if (komponente == null || komponente.Count == 0)
             {
-                Console.WriteLine("⚠️ Ni komponent za izračun povprečne cene.");
+                Console.WriteLine(" Ni komponent za izračun povprečne cene.");
                 return 0;
             }
 

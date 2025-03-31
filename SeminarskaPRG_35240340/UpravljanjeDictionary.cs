@@ -6,7 +6,7 @@ namespace SeminarskaPRG_35240340
 {
     public class UpravljanjeDictionary
     {
-        // Slovarja za hiter dostop do komponent in napak
+        // Slovari  za hiter dostop do komponent in napak
         private Dictionary<string, KomponentaVozila> komponentaMap = new Dictionary<string, KomponentaVozila>();
         private Dictionary<string, NapakaVozila> napakaMap = new Dictionary<string, NapakaVozila>();
 
@@ -18,18 +18,18 @@ namespace SeminarskaPRG_35240340
             {
                 if (komponenta == null || string.IsNullOrWhiteSpace(komponenta.SerijskaStevilka))
                 {
-                    Console.WriteLine("⚠️ Neveljavna komponenta!");
+                    Console.WriteLine(" Neveljavna komponenta!");
                     continue;
                 }
 
                 if (komponentaMap.ContainsKey(komponenta.SerijskaStevilka))
                 {
-                    Console.WriteLine($"⚠️ Komponenta s serijsko številko {komponenta.SerijskaStevilka} že obstaja!");
+                    Console.WriteLine($" Komponenta s serijsko številko {komponenta.SerijskaStevilka} že obstaja!");
                     continue;
                 }
 
                 komponentaMap[komponenta.SerijskaStevilka] = komponenta;
-                Console.WriteLine($"✅ Komponenta {komponenta.Naziv} uspešno dodana!");
+                Console.WriteLine($" Komponenta {komponenta.Naziv} uspešno dodana!");
             }
         }
 
@@ -40,18 +40,18 @@ namespace SeminarskaPRG_35240340
 
                 if (napaka == null || string.IsNullOrWhiteSpace(napaka.KodaNapake))
                 {
-                    Console.WriteLine("⚠️ Neveljavna napaka!");
+                    Console.WriteLine(" Neveljavna napaka!");
                     continue;
                 }
 
                 if (napakaMap.ContainsKey(napaka.KodaNapake))
                 {
-                    Console.WriteLine($"⚠️ Napaka s kodo {napaka.KodaNapake} že obstaja!");
+                    Console.WriteLine($" Napaka s kodo {napaka.KodaNapake} že obstaja!");
                     continue;
                 }
 
                 napakaMap[napaka.KodaNapake] = napaka;
-                Console.WriteLine($"✅ Napaka {napaka.KodaNapake} uspešno dodana!");
+                Console.WriteLine($" Napaka {napaka.KodaNapake} uspešno dodana!");
             }
         }
 
@@ -61,11 +61,11 @@ namespace SeminarskaPRG_35240340
         {
             if (komponentaMap.Count == 0)
             {
-                Console.WriteLine("ℹ️ Ni vnesenih komponent.");
+                Console.WriteLine(" Ni vnesenih komponent.");
                 return;
             }
 
-            Console.WriteLine("\n📋 Seznam vseh komponent:");
+            Console.WriteLine("\n Seznam vseh komponent:");
             foreach (var komponenta in komponentaMap.Values)
             {
                 Console.WriteLine(komponenta.ToString());
@@ -77,11 +77,11 @@ namespace SeminarskaPRG_35240340
         {
             if (napakaMap.Count == 0)
             {
-                Console.WriteLine("ℹ️ Ni vnesenih napak.");
+                Console.WriteLine(" Ni vnesenih napak.");
                 return;
             }
 
-            Console.WriteLine("\n📋 Seznam vseh napak:");
+            Console.WriteLine("\n Seznam vseh napak:");
             foreach (var napaka in napakaMap.Values)
             {
                 Console.WriteLine(napaka.ToString());
@@ -98,7 +98,7 @@ namespace SeminarskaPRG_35240340
                 return komponenta;
             }
 
-            Console.WriteLine($"⚠️ Komponenta s serijsko številko '{serijskaStevilka}' ni bila najdena.");
+            Console.WriteLine($" Komponenta s serijsko številko '{serijskaStevilka}' ni bila najdena.");
             return null;
         }
 
@@ -109,7 +109,7 @@ namespace SeminarskaPRG_35240340
                 return napaka;
             }
 
-            Console.WriteLine($"⚠️ Napaka s kodo '{kodaNapake}' ni bila najdena.");
+            Console.WriteLine($" Napaka s kodo '{kodaNapake}' ni bila najdena.");
             return null;
         }
 
@@ -119,11 +119,11 @@ namespace SeminarskaPRG_35240340
         {
             if (komponentaMap.Remove(serijskaStevilka))
             {
-                Console.WriteLine($"🗑️ Komponenta {serijskaStevilka} uspešno odstranjena.");
+                Console.WriteLine($" Komponenta {serijskaStevilka} uspešno odstranjena.");
                 return true;
             }
 
-            Console.WriteLine($"⚠️ Komponente s serijsko številko {serijskaStevilka} ni mogoče najti.");
+            Console.WriteLine($" Komponente s serijsko številko {serijskaStevilka} ni mogoče najti.");
             return false;
         }
 
@@ -131,15 +131,15 @@ namespace SeminarskaPRG_35240340
         {
             if (napakaMap.Remove(kodaNapake))
             {
-                Console.WriteLine($"🗑️ Napaka {kodaNapake} uspešno odstranjena.");
+                Console.WriteLine($" Napaka {kodaNapake} uspešno odstranjena.");
                 return true;
             }
 
-            Console.WriteLine($"⚠️ Napake s kodo {kodaNapake} ni mogoče najti.");
+            Console.WriteLine($"  Napake s kodo {kodaNapake} ni mogoče najti.");
             return false;
         }
 
-        // DOSTOP DO NOTRANJIH SEZNAMOV (če jih rabiš za LINQ ali shranjevanje)
+        // DOSTOP DO NOTRANJIH SEZNAMOV (če jih rabimo za LINQ ali shranjevanje)
 
         public List<KomponentaVozila> VrniVseKomponente() => komponentaMap.Values.ToList();
         public List<NapakaVozila> VrniVseNapake() => napakaMap.Values.ToList();

@@ -16,7 +16,7 @@ namespace SeminarskaPRG_35240340
     {
         public void Analiziraj(List<NapakaVozila> napake)
         {
-            Console.WriteLine("\n⚠️ Standardna analiza: Kritične napake vozila:");
+            Console.WriteLine("\n Standardna analiza: Kritične napake vozila:");
 
             var kriticneNapake = napake
                 .Where(n => n.StopnjaResnosti >= 4)

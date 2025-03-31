@@ -60,7 +60,7 @@ namespace SeminarskaPRG_35240340
             // Privzeti konstruktor 
             public ElektronskaEnota() : base()
             {
-                Console.Write("Vnesite vrsto enote (ECU, ABS modul, Senzor, itd.): ");
+                Console.Write("Vnesite vrsto enote (ECU, ABS modul, Senzor,....): ");
                 VrstaEnote = Console.ReadLine();
 
                 while (true)
@@ -75,12 +75,12 @@ namespace SeminarskaPRG_35240340
                         }
                         catch (ArgumentOutOfRangeException ex)
                         {
-                            Console.WriteLine($"Napaka: {ex.Message}");
+                            Console.WriteLine($" Napaka: {ex.Message}");
                         }
                     }
                     else
                     {
-                        Console.WriteLine("Napaka: Vnesite celo število za napetost.");
+                        Console.WriteLine(" Napaka: Vnesite celo število za napetost.");
                     }
                 }
 

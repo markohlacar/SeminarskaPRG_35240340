@@ -11,10 +11,10 @@ namespace SeminarskaPRG_35240340.Komponente
 
     public class Motor : KomponentaVozila
     {
-        // Prostornina motorja v litrih (npr. 1.6)
+        // Prostornina motorja v litrih ( 1.6 ... )
         public double ProstorninaMotorja { get; set; }
 
-        // Konstruktor
+        // Konstruktor osnovni...
         public Motor(string naziv, string proizvajalec, decimal cena, DateTime datumProizvodnje,
                      string serijskaStevilka, double prostorninaMotorja)
             : base(naziv, proizvajalec, cena, datumProizvodnje, serijskaStevilka)
@@ -22,7 +22,7 @@ namespace SeminarskaPRG_35240340.Komponente
             ProstorninaMotorja = prostorninaMotorja;
         }
 
-        // Validacija motorja
+        // Validacija komponente motorja
         public override bool ValidirajKomponento()
         {
             if (Cena <= 0) return false;

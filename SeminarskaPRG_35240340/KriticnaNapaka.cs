@@ -13,7 +13,7 @@ namespace SeminarskaPRG_35240340
 
     public class KriticnaNapaka : NapakaVozila
     {
-        // Ali vozilo ni več vozno zaradi napake
+        // Ali vozilo ni več vozno zaradi napake ?? če je kritična napaka, pač parkiramo :) 
         public bool VoziloNiVozno { get; set; }
 
         // Konstruktor za inicializacijo kritične napake

@@ -8,18 +8,20 @@ namespace SeminarskaPRG_35240340
 {
     class Program
     {
-        // Singleton za upravljanje podatkov
+        // Singleton vzorec za upravljanje podatkov ...
+
         static UrejanjePodatkov analiza = UrejanjePodatkov.Instanca;
         static AnalizatorNapak analizator = new AnalizatorNapak(new StandardnaAnalizaStrategija());
         static UpravljanjeDictionary upravljanje = new UpravljanjeDictionary();
 
         static async Task Main()
         {
-            var seznamKomponent = await analiza.PreberiKomponenteAsync(); // tu  uporabljamo Parallel.ForEach
+            var seznamKomponent = await analiza.PreberiKomponenteAsync(); 
             upravljanje.DodajKomponente(seznamKomponent.ToArray());
-            var seznamNapak = await analiza.PreberiNapakeAsync(); // tu uporabljamo Parallel.ForEach
+            var seznamNapak = await analiza.PreberiNapakeAsync(); 
             upravljanje.DodajNapake(seznamNapak.ToArray());
 
+            // Uporabniški meni se vrti....
             int izbira;
             do
             {
@@ -62,13 +64,13 @@ namespace SeminarskaPRG_35240340
                         Console.WriteLine($"\nPovprečna cena komponent: {analiza.IzracunajPovprecnoCeno(upravljanje.VrniVseKomponente()):F2}€");
                         break;
                     case 7:
-                        await analiza.ShraniKomponenteAsync(upravljanje.VrniVseKomponente()); // tu  uporabljamo Parallel.ForEach
-                        await analiza.ShraniNapakeAsync(upravljanje.VrniVseNapake()); // tu  uporabljamo Parallel.ForEach
+                        await analiza.ShraniKomponenteAsync(upravljanje.VrniVseKomponente()); 
+                        await analiza.ShraniNapakeAsync(upravljanje.VrniVseNapake()); 
                         break;
                     case 8:
-                        seznamKomponent = await analiza.PreberiKomponenteAsync(); // tu  uporabljamo Parallel.ForEach
+                        seznamKomponent = await analiza.PreberiKomponenteAsync(); 
                         upravljanje.DodajKomponente(seznamKomponent.ToArray());
-                        seznamNapak = await analiza.PreberiNapakeAsync(); // tu uporabljamo Parallel.ForEach
+                        seznamNapak = await analiza.PreberiNapakeAsync(); 
                         upravljanje.DodajNapake(seznamNapak.ToArray());
                         break;
                     case 9:
@@ -82,7 +84,7 @@ namespace SeminarskaPRG_35240340
             } while (izbira != 9);
         }
 
-        // DODAJANJE KOMPONENTE 
+        // DODAJANJE KOMPONENT
 
         static void DodajKomponento()
         {
@@ -124,7 +126,7 @@ namespace SeminarskaPRG_35240340
             upravljanje.DodajKomponente(novaKomponenta);
         }
 
-        //  DODAJANJE NAPAKE 
+        //  DODAJANJE NAPAK
 
         static void DodajNapako()
         {
@@ -181,7 +183,7 @@ namespace SeminarskaPRG_35240340
             {
                 1 => new StandardnaAnalizaStrategija(),
                 2 => new PodrobnaAnalizaStrategija(),
-                _ => throw new Exception("Neveljavna izbira!")
+                _ => throw new Exception(" Neveljavna izbira!")
             };
 
             analizator.NastaviStrategijo(strategija);

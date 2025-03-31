@@ -9,9 +9,9 @@ namespace SeminarskaPRG_35240340.Komponente
 
     // Abstraktna baza za vse komponente vozila (Motor, ElektronskaEnota, Zavore, itd....)
 
-    public abstract class KomponentaVozila : IShranljivost
+    public abstract class KomponentaVozila : IShranljivost // Deduje vmesnik za pisanje v fajl
     {
-        // Osnovne lastnosti, skupne vsem komponentam
+        // Osnovne lastnosti, skupne vsem komponentam....
         public string Naziv { get; set; }
         public string Proizvajalec { get; set; }
         public decimal Cena { get; set; }
@@ -19,7 +19,7 @@ namespace SeminarskaPRG_35240340.Komponente
         public string SerijskaStevilka { get; set; }
         public bool Shranjeno { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        // Glavni konstruktor – uporabi se pri ustvarjanju primerkov s podatki
+        // Glavni konstruktor – uporabi se pri ustvarjanju novih komponent s podatkih
         public KomponentaVozila(string naziv, string proizvajalec, decimal cena, DateTime datumProizvodnje, string serijskaStevilka)
         {
             Naziv = naziv;
@@ -29,19 +29,16 @@ namespace SeminarskaPRG_35240340.Komponente
             SerijskaStevilka = serijskaStevilka;
         }
 
-        // Privzeti konstruktor – uporaben za interaktivni vnos ali potrebe serializacije
-        protected KomponentaVozila()
-        {
-            // Možno je določiti privzete vrednosti
-        }
+        // Privzeti konstruktor – uporaben za interaktivni vnos 
+        protected KomponentaVozila() { }
 
-        // Abstraktna metoda za validacijo, ki jo mora definirati vsak podrazred
+        // Abstraktna metoda za validacijo - definirajo jo podrazreedi
         public abstract bool ValidirajKomponento();
 
-        // Abstraktna metoda za izpis podatkov, ki jo mora definirati vsak podrazred
+        // Abstraktna metoda za izpis podatkov - definirajo jo podrazreedi
         public abstract string IzpisiPodatke();
 
-        // Osnovni izpis informacij o komponenti
+        // Osnovni izpis informacij o komponenti...
         public override string ToString()
         {
             return $"Naziv: {Naziv}\n" +
@@ -57,6 +54,8 @@ namespace SeminarskaPRG_35240340.Komponente
         }
     }
 
+
+    // ENUM za nastevanje komponent vozila pač po vrsti...
     public enum EKomponente
     {
         Motor = 1,

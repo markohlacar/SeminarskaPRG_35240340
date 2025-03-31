@@ -1,39 +1,86 @@
-﻿# VoziloKomponenteApp
+# Projekt: Sledenje komponent in napak na vozilih v proizvodnem podjetju.
 
-A C# project that simulates vehicle component management, error tracking, and analysis. The application uses object-oriented design principles, modern patterns like Factory, Singleton, and Strategy, and includes support for async programming and efficient data processing using `List` and `Dictionary`.
+Projekt v jeziku C#, ki simulira upravljanje komponent vozila, beleženje napak in njihovo analizo. Aplikacija uporablja objektno usmerjeno zasnovo, sodobne programske vzorce (Factory, Singleton, Strategy) ter podpira asinhrono programiranje in učinkovito obdelavo podatkov z uporabo struktur `List` in `Dictionary`.
 
 ---
 
-## 📦 Project Structure
+## 📦 Struktura projekta
 
-### 🔧 Abstract Base Classes
+### 🔧 Abstraktni osnovni razredi
 
-- **KomponentaVozila** – Abstract base class for all vehicle components.
+- **KomponentaVozila** – Abstraktni razred, iz katerega izhajajo vse komponente vozila:
   - `Motor`
   - `Zavore`
   - `ElektronskaEnota`
   - `Kolesa`
-  - `Rezervoar`
+  
 
-- **NapakaVozila** – Abstract base class for vehicle error types.
+- **NapakaVozila** – Abstraktni razred za različne vrste napak:
   - `KriticnaNapaka`
   - `ManjsaNapaka`
 
 ---
 
-## 🧱 Design Patterns Used
+## 🧱 Uporabljeni programski vzorci
 
-### 🏭 Factory Pattern – `KomponentaFactory`
-Used for creating vehicle components without directly instantiating each one.
+### 🏭 Factory vzorec – `KomponentaFactory`
+Uporablja se za ustvarjanje različnih komponent vozila brez neposrednega instanciranja.
 
-**Purpose:**
-> Simplifies object creation in the main logic (`Program.cs`). Components can be created dynamically using string identifiers.
+**Namen:**
+- Poenostavi ustvarjanje objektov v glavni metodi (`Program.cs`). Komponente se ustvarjajo dinamično glede na podano vrsto v obliki niza.
+- Ustvarjanje objektov ob branju iz datoteke.
 
 ---
 
-### 🔁 Singleton Pattern – `UrejanjePodatkov`
-Ensures only one instance is responsible for reading and writing data throughout the application.
+### 🔁 Singleton vzorec – `UrejanjePodatkov`
+Zagotavlja, da obstaja samo ena instanca razreda za branje in shranjevanje podatkov v datoteke ali bazo.
 
-**Usage in Code:**
+**Uporaba v kodi:**
 ```csharp
 UrejanjePodatkov.Instanca
+
+
+### 🧠 **Strategy pattern** AnalizatorNapak
+
+Omogoča izbiro različnih strategij za analizo napak.
+
+Uporaba v:
+
+Program.cs → IzvediAnalizoNapak()
+
+Možne strategije:
+- `StandardnaAnalizaStrategija()` – prikaže samo kritične napake.
+- `PodrobnaAnalizaStrategija()` – prikaže vse napake.
+
+
+
+💾 Podatkovne strukture
+
+Aplikacija uporablja učinkovite strukture za shranjevanje in dostop do podatkov:
+
+    List<T> – za shranjevanje seznamov podatkov:
+
+        List<KomponentaVozila> → vsebuje vse komponente vozila.
+
+        List<NapakaVozila> → vsebuje vse zabeležene napake.
+
+    Dictionary<TKey, TValue> – za hiter dostop in iskanje podatkov:
+
+        Uporablja se v UpravljanjeDictionary za iskanje komponent/napak po ID-ju ali kodi.
+
+        Primer:
+
+        Dictionary<string, KomponentaVozila>
+
+⚙️ Asinhrono in paralelno programiranje
+🔄 Asinhrone metode (async/await)
+
+V razredu UrejanjePodatkov so implementirane asinhrone metode za:
+
+    Branje in shranjevanje podatkov brez blokiranja glavne niti.
+
+🚀 Paralelna obdelava – Parallel.ForEach
+
+V AnalizatorNapak je uporabljena paralelna obdelava:
+
+    Parallel.ForEach omogoča hkratno analizo več napak in pohitritev postopka.

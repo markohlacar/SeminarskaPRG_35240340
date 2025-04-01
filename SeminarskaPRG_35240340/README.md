@@ -1,80 +1,80 @@
-# Projekt: Sledenje komponent in napak na vozilih v proizvodnem podjetju.
+PROJEKT: Sledenje komponent in napak na vozilih v proizvodnem podjetju
 
-Projekt v jeziku C#, ki simulira upravljanje komponent vozila, beleženje napak in njihovo analizo. Aplikacija uporablja objektno usmerjeno zasnovo, sodobne programske vzorce (Factory, Singleton, Strategy) ter podpira asinhrono programiranje in učinkovito obdelavo podatkov z uporabo struktur `List` in `Dictionary`.
+Opis:
+Projekt v jeziku C#, ki simulira upravljanje komponent vozila, beleženje napak in njihovo analizo.
+Aplikacija uporablja objektno usmerjeno zasnovo, sodobne programske vzorce (Factory, Singleton, Strategy)
+ter podpira asinhrono programiranje in učinkovito obdelavo podatkov z uporabo struktur List in Dictionary.
 
----
+------------------------------------------------------------
 
-## 📦 Struktura projekta
+STRUKTURA PROJEKTA
 
-### 🔧 Abstraktni osnovni razredi
+1. Abstraktni osnovni razredi:
 
-- **KomponentaVozila** – Abstraktni razred, iz katerega izhajajo vse komponente vozila:
-  - `Motor`
-  - `Zavore`
-  - `ElektronskaEnota`
-  - `Kolesa`
-  
+- KomponentaVozila (osnova za vse komponente vozila):
+    - Motor
+    - Zavore
+    - ElektronskaEnota
+    - Kolesa
 
-- **NapakaVozila** – Abstraktni razred za različne vrste napak:
-  - `KriticnaNapaka`
-  - `ManjsaNapaka`
+- NapakaVozila (osnova za različne vrste napak):
+    - KriticnaNapaka
+    - ManjsaNapaka
 
----
+------------------------------------------------------------
 
-## 🧱 Uporabljeni programski vzorci
+UPORABLJENI PROGRAMSKI VZORCI
 
-### 🏭 Factory vzorec – `KomponentaFactory`
-Uporablja se za ustvarjanje različnih komponent vozila brez neposrednega instanciranja.
+1. Factory vzorec – KomponentaFactory
+- Uporablja se za ustvarjanje različnih komponent vozila brez neposrednega instanciranja.
+- Poenostavi ustvarjanje objektov v glavni metodi (Program.cs).
+- Komponente se ustvarjajo dinamično glede na podano vrsto v obliki niza.
+- Uporablja se tudi pri ustvarjanju objektov med branjem iz datoteke.
 
-**Namen:**
-- Poenostavi ustvarjanje objektov v glavni metodi (`Program.cs`). Komponente se ustvarjajo dinamično glede na podano vrsto v obliki niza.
-- Ustvarjanje objektov ob branju iz datoteke.
+2. Singleton vzorec – UrejanjePodatkov
+- Zagotavlja, da obstaja samo ena instanca razreda za branje in shranjevanje podatkov.
+- Uporaba v kodi: UrejanjePodatkov.Instanca
 
----
-
-### 🔁 Singleton vzorec – `UrejanjePodatkov`
-Zagotavlja, da obstaja samo ena instanca razreda za branje in shranjevanje podatkov v datoteke ali bazo.
-
-**Uporaba v kodi:**
-```csharp
-UrejanjePodatkov.Instanca
-```
-
-### 🧠 Strategy pattern - AnalizatorNapak
-
-Omogoča izbiro različnih strategij za analizo napak.
-
-Uporaba v:
-
-Program.cs → IzvediAnalizoNapak()
+3. Strategy vzorec – AnalizatorNapak
+- Omogoča izbiro različnih strategij za analizo napak.
+- Uporablja se v Program.cs → metoda IzvediAnalizoNapak()
 
 Možne strategije:
-- `StandardnaAnalizaStrategija()` – prikaže samo kritične napake.
-- `PodrobnaAnalizaStrategija()` – prikaže vse napake.
+- StandardnaAnalizaStrategija() – prikaže samo kritične napake.
+- PodrobnaAnalizaStrategija() – prikaže vse napake.
 
+------------------------------------------------------------
 
+PODATKOVNE STRUKTURE
 
-💾 Podatkovne strukture
+- Dictionary<SerijskaStevilka ali KodaNapake, TValue>
+    - Uporablja se za hiter dostop do specifičnih podatkov brez podvajanja ključev.
+    - Implementirano v razredu UpravljanjeDictionary.
+    - Omogoča iskanje komponent ali napak po ID-ju ali kodi.
 
-Aplikacija uporablja učinkovite strukture za shranjevanje in dostop do podatkov:
-
-    Dictionary<SerijskaStevilka ali KodaNapake, TValue> – za hiter dostop do specifičnih podatkov, brez podvajanja serijskih številk:
-
-        Uporablja se v UpravljanjeDictionary za iskanje komponent/napak po ID-ju ali kodi.
-
-        Primer:
-
+    Primer:
         Dictionary<string, KomponentaVozila>
 
-        Ta razred tudi vrne komponente in napake v <List> za potrebe shranjevanja ali izpisovanja.
+    Razred UpravljanjeDictionary vrne tudi seznam komponent in napak kot List<T> za potrebe:
+    - Shranjevanja v datoteko ali bazo
+    - Izpisa vseh obstoječih podatkov
 
-⚙️ Asinhrono in paralelno programiranje
-🔄 Asinhrone metode (async/await)
+------------------------------------------------------------
 
-V razredu UrejanjePodatkov so implementirane asinhrone metode za:
+ASINHRONO IN PARALELNO PROGRAMIRANJE
 
-    Branje in shranjevanje podatkov brez blokiranja glavne niti.
+1. Asinhrone metode (async/await)
+- Uporabljene v razredu UrejanjePodatkov
+- Omogočajo branje in shranjevanje podatkov brez blokiranja glavne niti
 
-🚀 Paralelna obdelava – Parallel.ForEach
+2. Paralelna obdelava – Parallel.ForEach
+- Uporabljena v razredu AnalizatorNapak
+- Omogoča hkratno analizo več napak
+- Izboljša hitrost obdelave večjih seznamov napak
 
-    Parallel.ForEach omogoča hkratno analizo več napak in pohitritev postopka.
+------------------------------------------------------------
+
+OPOMBA:
+Projekt omogoča delo s podatki v datotekah (.txt) ali v SQLite bazi.
+UpravljanjeDictionary deluje kot pomožna struktura za hitro iskanje in urejanje komponent in napak.
+

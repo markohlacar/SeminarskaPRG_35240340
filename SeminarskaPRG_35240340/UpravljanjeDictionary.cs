@@ -10,6 +10,17 @@ namespace SeminarskaPRG_35240340
         private Dictionary<string, KomponentaVozila> komponentaMap = new Dictionary<string, KomponentaVozila>();
         private Dictionary<string, NapakaVozila> napakaMap = new Dictionary<string, NapakaVozila>();
 
+
+        // Počisti Dictionary na začetku - preko komande v main metodi
+
+      
+       public void PocistiSlovar()
+        {
+            komponentaMap.Clear();
+            napakaMap.Clear();
+            Console.WriteLine("Slovar uspešno počiščen.");
+        }
+       
         // DODAJANJE PODATKOV
 
         public void DodajKomponente(params KomponentaVozila[] komponente)
@@ -143,5 +154,24 @@ namespace SeminarskaPRG_35240340
 
         public List<KomponentaVozila> VrniVseKomponente() => komponentaMap.Values.ToList();
         public List<NapakaVozila> VrniVseNapake() => napakaMap.Values.ToList();
+
+
+
+        // Omogoča dodajanje več komponent iz seznama (npr. po branju iz datoteke)
+        public void DodajKomponente(List<KomponentaVozila> komponente)
+        {
+            DodajKomponente(komponente.ToArray());
+        }
+
+        // Omogoča dodajanje več napak iz seznama (npr. po branju iz datoteke)
+        public void DodajNapake(List<NapakaVozila> napake)
+        {
+            DodajNapake(napake.ToArray());
+        }
+
+
+
     }
+
+
 }

@@ -31,7 +31,10 @@ namespace SeminarskaPRG_35240340
             }
         }
 
-        // Shrani vse komponente v datoteko (asinhrono, paralelno)
+        
+       // Shrani vse komponente v datoteko (asinhrono, paralelno)
+
+        
         public async Task ShraniKomponenteAsync(List<KomponentaVozila> komponente)
         {
             if (komponente == null || komponente.Count == 0)
@@ -136,6 +139,8 @@ namespace SeminarskaPRG_35240340
                     }
 
                     var vrstice = File.ReadAllLines(datotekaNapak).ToList();
+
+                    Console.WriteLine("\n Vsebina datoteke 'napake.txt':\n");
 
                     Parallel.ForEach(vrstice, vrstica =>
                     {

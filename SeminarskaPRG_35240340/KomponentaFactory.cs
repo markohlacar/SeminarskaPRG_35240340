@@ -1,5 +1,4 @@
-﻿using SeminarskaPRG_35240340.SeminarskaPRG_35240340;
-using SeminarskaPRG_35240340.Komponente;
+﻿using SeminarskaPRG_35240340.Komponente;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +10,7 @@ namespace SeminarskaPRG_35240340
 
     public static class KomponentaFactory
     {
-        // Faktory metoda za ustvarjanje komponent
+        // Faktory  za ustvarjanje komponent
         public static KomponentaVozila? UstvariKomponento(
             EKomponente tip, string naziv, string proizvajalec, decimal cena, string serijskaStevilka)
         {
@@ -55,7 +54,7 @@ namespace SeminarskaPRG_35240340
                     Console.Write("Vrsta enote (ECU, ABS modul ...): ");
                     string vrstaEnote = Console.ReadLine()?.Trim();
 
-                    Console.Write("Napetost (6V–14V): ");
+                    
                     Console.Write("Napetost (6V - 14V): ");
                     bool veljavnaNapetost = int.TryParse(Console.ReadLine(), out int napetost) && napetost >= 6 && napetost <= 14;
 

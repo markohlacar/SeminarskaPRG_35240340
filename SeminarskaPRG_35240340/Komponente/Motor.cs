@@ -1,20 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SeminarskaPRG_35240340.Komponente
 {
-
-    // Razred, ki predstavlja motor vozila deduje iz razreda KomponentaVozila
-
+    // Razred, ki predstavlja motor vozila.
     public class Motor : KomponentaVozila
     {
-        // Prostornina motorja v litrih ( 1.6 ... )
-        public double ProstorninaMotorja { get; set; }
+        public double ProstorninaMotorja { get; set; }  // V litrih (npr. 1.6)
 
-        // Konstruktor osnovni...
+        // Konstruktor s parametri – uporabljen v KomponentaFactory
         public Motor(string naziv, string proizvajalec, decimal cena, DateTime datumProizvodnje,
                      string serijskaStevilka, double prostorninaMotorja)
             : base(naziv, proizvajalec, cena, datumProizvodnje, serijskaStevilka)
@@ -22,36 +15,31 @@ namespace SeminarskaPRG_35240340.Komponente
             ProstorninaMotorja = prostorninaMotorja;
         }
 
-        // Validacija komponente motorja
         public override bool ValidirajKomponento()
         {
-            if (Cena <= 0) return false;
-
-            if (ProstorninaMotorja <= 0 || ProstorninaMotorja > 10) return false;
-
-            if (DatumProizvodnje < new DateTime(1900, 1, 1) || DatumProizvodnje > DateTime.Now) return false;
-
-            return true;
+            return Cena > 0 &&
+                   ProstorninaMotorja > 0 && ProstorninaMotorja <= 10 &&
+                   DatumProizvodnje >= new DateTime(1900, 1, 1) &&
+                   DatumProizvodnje <= DateTime.Now;
         }
 
-        // Izpis podatkov
         public override string IzpisiPodatke()
         {
             return $"{base.ToString()}\n" +
                    $"Prostornina motorja: {ProstorninaMotorja} L";
         }
 
-        // Preglasitev ToString
-        public override string ToString()
+        public override string ToString() 
         {
-            return IzpisiPodatke();
+        return IzpisiPodatke();
         }
+
 
         public override string PridobiShranljiviString()
         {
             string baseString = base.PridobiShranljiviString();
-            EKomponente tip;
-            Enum.TryParse<EKomponente>(this.GetType().Name, out tip);
+            EKomponente tip = EKomponente.Motor;
+            Enum.TryParse(GetType().Name, out tip);
             return $"{(int)tip},{baseString},{ProstorninaMotorja}";
         }
     }
